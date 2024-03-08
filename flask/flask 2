@@ -1,0 +1,21 @@
+from flask import Flask, request, jsonify
+
+
+url = 'http://localhost:5000/update_person'
+
+# Updated data
+updated_data = {
+    'name': 'John Doe',
+    'age': 30,
+    'height': 180,
+    'studies': 'Computer Science'
+}
+
+# Send the updated data as a PUT request
+response = request.put(url, json=updated_data)
+
+# Check if the request was successful
+if response.status_code == 200:
+    print("Data updated successfully!")
+else:
+    print(f"Failed to update data. Status code: {response.status_code}")

@@ -1,0 +1,21 @@
+from flask import Flask, request, jsonify
+
+app = Flask(__name__)
+
+# Sample initial data
+person_data = {
+    'name': 'John Doe',
+    'age': 25,
+    'height': 170,
+    'studies': 'Computer Science'
+}
+
+@app.route('/person', methods=['PUT'])
+def update_person():
+    global person_data
+    new_data = request.get_json()
+    person_data.update(new_data)  # Update the data with the new values
+    return jsonify({'message': 'Data updated successfully'}), 200
+
+if __name__ == '__main__':
+    app.run(debug=True)
